@@ -1,12 +1,17 @@
 # RM_Buff_Tracker
 
-仅分享一个开源的思路，为了实现方便才使用Python进行实现。
+此项目仅开源分享的思路，为了实现方便故而使用Python进行实现。
+
+此项目纯传统，无SVM等任何统计学或深度学习的分类器，跟踪器等。
 
 > 作者：桂林理工大学-方玺林
 >
 > QQ：2438254242
 
+# 项目依赖
 
+1. Opencv-Python
+2. Numpy
 
 ## 主要思路
 
@@ -94,4 +99,9 @@ if len(realFanBladeList) == 1:  # 如果只有一个扇叶亮起，则这一定�
 
 
 
+>测试视频来自官方，example的测试视频链接是：
+>
+>链接：https://pan.baidu.com/s/1HEIfIGBeFIBCgfBdOnyuaA?pwd=6666 
+>提取码：6666 
+>
 >最后感谢桂电老哥提供的旧能量机关相机内录视频

@@ -1,0 +1,22 @@
+{
+    "HSV": {
+        "lowerLimit": [
+            0,
+            91,
+            254
+        ],
+        "upperLimit": [
+            70,
+            255,
+            255
+        ]
+    },
+    "kernel": 10,
+    "outsideRate": 1.4,
+    "insideRate": 0.79,
+    "MayBeTarget": {
+        "width": 0.1,
+        "height": 0.1,
+        "area": 0.1
+    },
+}

@@ -1,13 +1,16 @@
+import os
 import cv2
 import numpy as np
 from buff_tracker.buffTracker import BBox
+from PIL import Image, ImageDraw, ImageFont
 from buff_tracker.parameterUtils import parameterLoad, parameterWrite
+
 
 def nothing(x):
     pass
 
 
-def select_parameter(imgPath="1.jpg", jsonPath="parameter.yaml", frame=None):
+def select_parameter(parameterPath="parameter.yaml", frame=None):
     # use track bar to perfectly define (1/2)
     # the lower and upper values for HSV color space(2/2)
     cv2.namedWindow("Tracking")
@@ -23,12 +26,10 @@ def select_parameter(imgPath="1.jpg", jsonPath="parameter.yaml", frame=None):
     cv2.createTrackbar("outside rate", "Tracking", 100, 200, nothing)
     cv2.createTrackbar("inside rate", "Tracking", 0, 100, nothing)
     flag = True
-    if frame is None:
-        img = cv2.imread(imgPath)
-        frame = img.copy()
+    img = frame.copy()
     while True:
         if frame is None:
-            break
+            return False
         if flag:
             rect = cv2.selectROI('roi', frame)
             rect2 = cv2.selectROI("roi2", frame)
@@ -73,15 +74,30 @@ def select_parameter(imgPath="1.jpg", jsonPath="parameter.yaml", frame=None):
         if key < 0:
             continue
         elif chr(key) == "Q" or chr(key) == "q":  # Esc
-            data = parameterLoad(jsonPath)
+            data = parameterLoad(parameterPath)
             data["HSV"]["lowerLimit"] = lowerLimit.tolist()
             data["HSV"]["upperLimit"] = upperLimit.tolist()
             data["outsideRate"] = outsideRate / 100
             data["insideRate"] = insideRate / 100
             data["kernel"] = kernel
-            parameterWrite(jsonPath, data)
+            data["MayBeTarget"] = {"width": 0.1, "height": 0.1, "area": 0.1}
+            data["video related path"] = videoPath
+            parameterWrite(parameterPath, data)
             break
 
 
+videoPath = r"./examples/3_12mm_red_dark/12mm_red_dark.mp4"
+cap = cv2.VideoCapture(videoPath)
+if not cap.isOpened():
+    exit(-1)
+ret, frame = cap.read()
+# 选取你要进行调参的图片，按Q或q退出，按Enter下一张
+# 建议选取5个符都亮起的图作为调参的图片
+while ret:
+    cv2.imshow("frame", frame)
+    c = cv2.waitKey()
+    if chr(c) == "Q" or chr(c) == "q":
+        break
+    ret, frame = cap.read()
 
-select_parameter()
+select_parameter(os.path.split(videoPath)[0] + "/parameter.yaml", frame)

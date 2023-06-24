@@ -100,7 +100,7 @@ class BBox:
         '''
         self.id = BBox_ID
         self.xmin, self.ymin, self.xmax, self.ymax = xmin, ymin, xmax, ymax
-        self.p1, self.p2 = (xmin, ymin), (xmin + self.width, ymin + self.height)
+        self.p1, self.p2 = np.array([xmin, ymin]), np.array([xmin + self.width, ymin + self.height])
 
     def __xor__(self, other):
         '''
@@ -326,8 +326,8 @@ class FanBlade:
 
 # 能量机关的跟踪器
 class F_BuffTracker:
-    def __init__(self, fanBladeBox: BBox, R_Box: BBox, parameterPath: str):
-        self.param = Parameter(parameterPath)
+    def __init__(self, fanBladeBox: BBox, R_Box: BBox, param: Parameter, isImshow: bool = True):
+        self.param = param
         self.fanBladeBox = fanBladeBox
         self.R_Box = R_Box
         self.FanBladeList = [FanBlade(BBox(0, 0, 0, 0), RotationRectangle(np.random.uniform(size=(4, 2)),
@@ -336,6 +336,7 @@ class F_BuffTracker:
         self.states = ["target"] + ["unlighted"] * 4
         self.fanNum = 0
         self.center = R_Box.center_2f
+        self.isImshow = isImshow
         self.frame = None
 
     @staticmethod
@@ -362,10 +363,12 @@ class F_BuffTracker:
             if 0.4 * self.radius < rtn_rect.disBtm < rtn_rect.disTop < 1.5 * self.radius and rtn_rect.area > 2 * self.R_Box.area:
                 #  在0.4半径和1.5半径之内， 且面积起码得是中心R的box面积两倍以上的框才可能是备选框
                 x, y, w, h = cv2.boundingRect(cont)
-                cv2.rectangle(mask, (x, y), (x + w, y + h), (255, 255, 255), thickness=3)
+                if self.isImshow:
+                    cv2.rectangle(mask, (x, y), (x + w, y + h), (255, 255, 255), thickness=3)
                 fanBladeList.append(FanBlade(BBox(x, y, x + w, y + h), rtn_rect))
 
-        cv2.imshow("mask__", mask)
+        if self.isImshow:
+            cv2.imshow("mask__", mask)
         if self.FanBladeList[0].bbox.area == 0 and len(fanBladeList) == 1:  # 刚初始化后的特殊操作，仅第一帧会进入
             fanBladeList[0].bbox.id = 0
             return fanBladeList
@@ -387,8 +390,12 @@ class F_BuffTracker:
             for p in self.FanBladeList[i].rtn_rect.points:
                 tempPoints.append(p - self.center + self.R_Box.center_2f)
             correctFanBlade.append(FanBlade(tempBox, RotationRectangle(tempPoints, self.R_Box.center_2f)))
-            cv2.rectangle(self.frame, tempBox.p1, tempBox.p2, (255, 0, 0), 3)
-        cv2.imshow("temp_", self.frame)
+            if self.isImshow:
+                cv2.rectangle(self.frame, tempBox.p1, tempBox.p2, (255, 0, 0), 3)
+                cv2.putText(self.frame, "id = {} | lastFrame".format(tempBox.id), tempBox.p1 - 30, cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 0, 0), 2)
+
+        if self.isImshow:
+            cv2.imshow("temp_", self.frame)
 
         for lastFan in correctFanBlade:
             box = lastFan.bbox
@@ -469,10 +476,12 @@ class F_BuffTracker:
         :param isOpenMaybeTarget: 是否打开MaybeTarget函数
         :return: 返回bool结构，update是否成功
         """
-        self.frame = frame
+        if self.isImshow:
+            self.frame = frame
         lightedFanBlade_IDList = [0]  # 亮起扇叶的ID的List，默认扇叶0肯定是亮起的
         mask = self.__GetMaskByHSVThreshold(frame)  # HSV二值化
-        cv2.imshow("maskI", mask)
+        if self.isImshow:
+            cv2.imshow("maskI", mask)
         boxs = self.__GetAlternateBoxs(mask, isOpenMaybeTarget)  # 获取中心R box的备选框
         box_and_iou = compareByIoU(self.R_Box, boxs, IoU_Type.CIoU)  # 通过ciou计算哪个框最有可能是这一帧的中心R box
         if len(box_and_iou) != 0 and box_and_iou[0].iou > -1:  # 如果没有找到中心R 则返回False
@@ -494,9 +503,10 @@ class F_BuffTracker:
                 lightedFanBlade_IDList.append(box.id)
             self.FanBladeList[box.id].bbox = box
             print(box.center_2f)
-            cv2.rectangle(frame, box.p1, box.p2, (0, 0, 255), 2)
-            cv2.putText(frame, "id = {} | ".format(box.id) + self.states[box.id], box.p1, cv2.FONT_HERSHEY_SIMPLEX,
-                        0.75, (0, 0, 255), 2)
+            if self.isImshow:
+                cv2.rectangle(frame, box.p1, box.p2, (0, 0, 255), 2)
+                cv2.putText(frame, "id = {} | ".format(box.id) + self.states[box.id], box.p1, cv2.FONT_HERSHEY_SIMPLEX,
+                            0.75, (0, 0, 255), 2)
         # 更新未亮起的扇叶顶的信息
         for i in range(5):
             if i in lightedFanBlade_IDList:  # 跳过亮起的扇叶ID

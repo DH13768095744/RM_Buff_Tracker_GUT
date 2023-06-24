@@ -58,6 +58,7 @@ class Parameter:
     insideRate: float
     outsideRate: float
     MayBeTarget: MayBeTarget
+    videoRelPath: str
 
     def __init__(self, jsonPath: str) -> None:
         data = parameterLoad(jsonPath)
@@ -67,3 +68,4 @@ class Parameter:
         self.insideRate = data["insideRate"]
         self.outsideRate = data["outsideRate"]
         self.MayBeTarget = MayBeTarget(data["MayBeTarget"])
+        self.videoRelPath = data["video relative path"]

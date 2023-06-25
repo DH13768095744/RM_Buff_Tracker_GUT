@@ -1,0 +1,24 @@
+{
+    "HSV": {
+        "lowerLimit": [
+            0,
+            40,
+            254
+        ],
+        "upperLimit": [
+            71,
+            255,
+            255
+        ]
+    },
+    "kernel": 9,
+    "outsideRate": 1.28,
+    "insideRate": 0.74,
+    "MayBeTarget": {
+        "width": 0.1,
+        "height": 0.1,
+        "area": 0.1
+    },
+    "video relative path": "./examples/2_12mm_red_bright/12mm_red_bright.mp4",
+    "start": 1
+}

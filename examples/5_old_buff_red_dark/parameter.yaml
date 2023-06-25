@@ -1,0 +1,24 @@
+{
+    "HSV": {
+        "lowerLimit": [
+            0,
+            41,
+            160
+        ],
+        "upperLimit": [
+            70,
+            255,
+            255
+        ]
+    },
+    "kernel": 5,
+    "outsideRate": 1.2,
+    "insideRate": 0.8,
+    "MayBeTarget": {
+        "width": 0.1,
+        "height": 0.1,
+        "area": 0.1
+    },
+    "video relative path": "./examples/5_old_buff_red_dark/old_buff_red_dark.avi",
+    "start": 35
+}

@@ -139,11 +139,15 @@ if len(realFanBladeList) == 1:  # 如果只有一个扇叶亮起，则这一定�
 
 # 用法
 
-下载下面的测试视频后，将对应视频放入对用的example之中，一开始是两个`cv2.selectROI`选取中心R后回车，再选取待击打扇叶再回车即可
+下载下面的测试视频后，将对应视频放入对用的example之中，一开始是两个**cv2.selectROI**选取中心R后回车，再选取待击打扇叶再回车即可
 
 >测试视频来自官方，example的测试视频链接是：
 >
 >链接：https://pan.baidu.com/s/1HEIfIGBeFIBCgfBdOnyuaA?pwd=6666 
 >提取码：6666 
+>
+>B站视频演示：
+>
+>https://www.bilibili.com/video/BV1Ug4y1P7bS/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=1f5d064eea850d16e47b622112a8445b
 >
 >最后感谢桂电老哥提供的旧能量机关相机内录视频

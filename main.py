@@ -2,8 +2,8 @@ import cv2
 import time
 import numpy as np
 import matplotlib.pyplot as plt
-from buff_tracker.buffTracker import F_BuffTracker, BBox
-from buff_tracker.parameterUtils import Parameter
+from buffTracker import F_BuffTracker, BBox
+from parameterUtils import Parameter
 
 FPS_ = []
 isImshow = False

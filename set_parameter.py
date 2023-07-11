@@ -1,9 +1,9 @@
 import os
 import cv2
 import numpy as np
-from buff_tracker.buffTracker import BBox
+from buffTracker import BBox
 from PIL import Image, ImageDraw, ImageFont
-from buff_tracker.parameterUtils import parameterLoad, parameterWrite
+from parameterUtils import parameterLoad, parameterWrite
 
 
 def nothing(x):

@@ -3,7 +3,7 @@ import math
 import numpy as np
 from enum import Enum
 from typing import List
-from buff_tracker.parameterUtils import Parameter
+from parameterUtils import Parameter
 
 
 class IoU_Type(Enum):

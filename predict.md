@@ -58,9 +58,7 @@ $$
 
 
 $$
-\| \mathrm{Radian}_{\mathrm{t+\Delta t}}
--
-\mathrm{Radian}_{\mathrm{predict}}\|  <\mathrm{threshold}
+\mathrm{Radian}_{\mathrm{t+\Delta t}}-\mathrm{Radian}_{\mathrm{predict}}  < \mathrm{threshold}
 $$
 
 

@@ -1,9 +1,8 @@
 import os
 import cv2
 import numpy as np
-from buffTracker import BBox
-from PIL import Image, ImageDraw, ImageFont
-from parameterUtils import parameterLoad, parameterWrite
+from utils.buffTracker import BBox
+from utils.parameterUtils import parameterLoad, parameterWrite
 
 
 def nothing(x):
@@ -14,7 +13,7 @@ def select_parameter(parameterPath="parameter.yaml", frame=None):
     # use track bar to perfectly define (1/2)
     # the lower and upper values for HSV color space(2/2)
     cv2.namedWindow("Tracking")
-    cv2.resizeWindow("Tracking", 640, 480)
+    cv2.resizeWindow("Tracking", 800, 600)
     # 参数：1 Lower/Upper HSV 3 startValue 4 endValue
     cv2.createTrackbar("LH", "Tracking", 0, 255, nothing)
     cv2.createTrackbar("LS", "Tracking", 0, 255, nothing)
@@ -23,8 +22,9 @@ def select_parameter(parameterPath="parameter.yaml", frame=None):
     cv2.createTrackbar("US", "Tracking", 255, 255, nothing)
     cv2.createTrackbar("UV", "Tracking", 255, 255, nothing)
     cv2.createTrackbar("kernel", "Tracking", 0, 10, nothing)
-    cv2.createTrackbar("outside rate", "Tracking", 100, 200, nothing)
-    cv2.createTrackbar("inside rate", "Tracking", 0, 100, nothing)
+    cv2.createTrackbar("outside", "Tracking", 100, 200, nothing)
+    cv2.createTrackbar("inside", "Tracking", 0, 100, nothing)
+
     flag = True
     img = frame.copy()
     while True:
@@ -50,8 +50,9 @@ def select_parameter(parameterPath="parameter.yaml", frame=None):
 
         kernel = cv2.getTrackbarPos("kernel", "Tracking")
 
-        outsideRate = cv2.getTrackbarPos("outside rate", "Tracking")
-        insideRate = cv2.getTrackbarPos("inside rate", "Tracking")
+        outsideRate = cv2.getTrackbarPos("outside", "Tracking")
+        insideRate = cv2.getTrackbarPos("inside", "Tracking")
+
 
         lowerLimit = np.array([l_h, l_s, l_v])  # lower limit
         upperLimit = np.array([u_h, u_s, u_v])  # upper limit
@@ -83,17 +84,19 @@ def select_parameter(parameterPath="parameter.yaml", frame=None):
             data["MayBeTarget"] = {"width": 0.1, "height": 0.1, "area": 0.1}
             data["video relative path"] = videoPath
             data["start"] = i
+
             parameterWrite(parameterPath, data)
             return
 
 
-videoPath = r"./examples/5_old_buff_red_dark/old_buff_red_dark.avi"
+# videoPath = r"./examples/6_dark_blue_big/6_dark_blue_big.MP4"
+videoPath = r"./examples/example_for_prediction/10_dark_red_small_near/dark_red_small_near.MP4"
 cap = cv2.VideoCapture(videoPath)
 if not cap.isOpened():
     exit(-1)
 ret, frame = cap.read()
 height, width, channel = frame.shape
-frame = cv2.resize(frame, (width * 2, height * 2))
+# frame = cv2.resize(frame, (width * 2, height * 2))
 
 i = 1
 # 选取你要进行调参的图片，按Q或q退出，按Enter下一张
@@ -104,7 +107,7 @@ while ret:
     if chr(c) == "Q" or chr(c) == "q":
         break
     ret, frame = cap.read()
-    frame = cv2.resize(frame, (width * 2, height * 2))
+    # frame = cv2.resize(frame, (width * 2, height * 2))
     i += 1
 
 select_parameter(os.path.split(videoPath)[0] + "/parameter.yaml", frame)

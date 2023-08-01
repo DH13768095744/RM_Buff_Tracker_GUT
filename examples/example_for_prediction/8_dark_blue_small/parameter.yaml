@@ -1,0 +1,24 @@
+{
+    "HSV": {
+        "lowerLimit": [
+            0,
+            0,
+            245
+        ],
+        "upperLimit": [
+            92,
+            100,
+            255
+        ]
+    },
+    "MayBeTarget": {
+        "width": 0.1,
+        "height": 0.1,
+        "area": 0.1
+    },
+    "outsideRate": 1.35,
+    "insideRate": 0.76,
+    "kernel": 8,
+    "video relative path": "./examples/example_for_prediction/8_dark_blue_small/dark_blue_small.MP4",
+    "start": 245
+}

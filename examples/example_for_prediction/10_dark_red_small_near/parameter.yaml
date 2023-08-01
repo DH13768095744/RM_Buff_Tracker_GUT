@@ -1,0 +1,24 @@
+{
+    "HSV": {
+        "lowerLimit": [
+            0,
+            106,
+            133
+        ],
+        "upperLimit": [
+            255,
+            255,
+            255
+        ]
+    },
+    "MayBeTarget": {
+        "width": 0.1,
+        "height": 0.1,
+        "area": 0.1
+    },
+    "outsideRate": 1.42,
+    "insideRate": 0.75,
+    "kernel": 10,
+    "video relative path": "./examples/example_for_prediction/10_dark_red_small_near/dark_red_small_near.MP4",
+    "start": 116
+}

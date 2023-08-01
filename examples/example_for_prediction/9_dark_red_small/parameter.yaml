@@ -2,23 +2,23 @@
     "HSV": {
         "lowerLimit": [
             0,
-            40,
-            162
+            61,
+            248
         ],
         "upperLimit": [
-            70,
+            134,
             255,
             255
         ]
     },
-    "kernel": 5,
-    "outsideRate": 1.16,
-    "insideRate": 0.78,
     "MayBeTarget": {
         "width": 0.1,
         "height": 0.1,
         "area": 0.1
     },
-    "video relative path": "./examples/5_old_buff_red_dark/old_buff_red_dark.avi",
-    "start": 35
+    "outsideRate": 1.33,
+    "insideRate": 0.73,
+    "kernel": 6,
+    "video relative path": "./examples/example_for_prediction/9_dark_red_small/dark_red_small.mp4",
+    "start": 117
 }

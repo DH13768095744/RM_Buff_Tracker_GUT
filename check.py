@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
-from buff_tracker.buffTracker import F_BuffTracker, BBox
-from buff_tracker.parameterUtils import Parameter
+from utils.parameterUtils import Parameter
 
 
 def __GetMaskByHSVThreshold(param, frame):

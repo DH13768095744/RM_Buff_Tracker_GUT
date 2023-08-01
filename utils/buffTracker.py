@@ -3,7 +3,8 @@ import math
 import numpy as np
 from enum import Enum
 from typing import List
-from parameterUtils import Parameter
+from utils.parameterUtils import Parameter
+
 
 
 class IoU_Type(Enum):
@@ -327,17 +328,19 @@ class FanBlade:
 # 能量机关的跟踪器
 class F_BuffTracker:
     def __init__(self, fanBladeBox: BBox, R_Box: BBox, param: Parameter, isImshow: bool = True):
-        self.param = param
-        self.fanBladeBox = fanBladeBox
-        self.R_Box = R_Box
+        self.param = param  # parameter.yaml
+        self.fanBladeBox = fanBladeBox  # 输入进来的扇叶击打框, 以及之后的目标扇叶
+        self.R_Box = R_Box  # 中心R的BBox
         self.FanBladeList = [FanBlade(BBox(0, 0, 0, 0), RotationRectangle(np.random.uniform(size=(4, 2)),
                                                                           R_Box.center_2f)) for i in range(5)]
-        self.radius = R_Box.center_distance(fanBladeBox)
-        self.states = ["target"] + ["unlighted"] * 4
-        self.fanNum = 0
-        self.center = R_Box.center_2f
+        # 旋转第一个扇叶击打框得到其他位置的扇叶的图像坐标
+        self.radius = R_Box.center_distance(fanBladeBox)  # 半径
+        self.states = ["target"] + ["unlighted"] * 4  # 状态
+        self.fanNum = 0  # 扇叶亮起个数
+        self.center = R_Box.center_2f  # R_Box的中心
         self.isImshow = isImshow
         self.frame = None
+        self.count = 0 #temp
 
     @staticmethod
     def __Points2BBox(points) -> BBox:
@@ -392,10 +395,8 @@ class F_BuffTracker:
             correctFanBlade.append(FanBlade(tempBox, RotationRectangle(tempPoints, self.R_Box.center_2f)))
             if self.isImshow:
                 cv2.rectangle(self.frame, tempBox.p1, tempBox.p2, (255, 0, 0), 3)
-                cv2.putText(self.frame, "id = {} | lastFrame".format(tempBox.id), tempBox.p1 - 30, cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 0, 0), 2)
-
-        if self.isImshow:
-            cv2.imshow("temp_", self.frame)
+                cv2.putText(self.frame, "id = {} | lastFrame".format(tempBox.id), tempBox.p1 - 30,
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 0, 0), 2)
 
         for lastFan in correctFanBlade:
             box = lastFan.bbox
@@ -492,8 +493,10 @@ class F_BuffTracker:
                    thickness=-1)  # 把中心R 和流水灯都遮挡住，这留下扇叶顶准心
         cv2.circle(mask, center=self.R_Box.center_2i, radius=int(self.radius * self.param.outsideRate), color=(0, 0, 0),
                    thickness=3)  # 将外界和扇叶顶准心隔开，避免链接在一起影响外接矩形和最小外接矩形的计算
-        fanBladeList = self.__getFanBlade(mask)  # 获取扇叶顶的准心
+        fanBladeList = self.__getFanBlade(mask)  # 获取已经亮起的扇叶顶的准心
+        cv2.waitKey(1)
         self.center = self.R_Box.center_2f
+        self.count += 1
         if fanBladeList is None:
             return False
         self.fanNum = len(fanBladeList)  # 当前帧的亮起扇叶个数
@@ -502,11 +505,15 @@ class F_BuffTracker:
             if box.id != 0:
                 lightedFanBlade_IDList.append(box.id)
             self.FanBladeList[box.id].bbox = box
-            print(box.center_2f)
+            if self.states[box.id] == "target":
+                self.fanBladeBox = box
             if self.isImshow:
                 cv2.rectangle(frame, box.p1, box.p2, (0, 0, 255), 2)
                 cv2.putText(frame, "id = {} | ".format(box.id) + self.states[box.id], box.p1, cv2.FONT_HERSHEY_SIMPLEX,
                             0.75, (0, 0, 255), 2)
+                cv2.rectangle(frame, self.R_Box.p1, self.R_Box.p2, (0, 0, 255), thickness=3)
+                cv2.putText(frame, "R", self.R_Box.p1, cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+                cv2.putText(frame, "press Q to quit", (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
         # 更新未亮起的扇叶顶的信息
         for i in range(5):
             if i in lightedFanBlade_IDList:  # 跳过亮起的扇叶ID

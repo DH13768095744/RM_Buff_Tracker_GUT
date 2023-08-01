@@ -164,11 +164,17 @@ if len(realFanBladeList) == 1:  # 如果只有一个扇叶亮起，则这一定�
 
 >测试视频来自官方，example的测试视频链接是：
 >
->链接：https://pan.baidu.com/s/1HEIfIGBeFIBCgfBdOnyuaA?pwd=6666 
+>链接：https://pan.baidu.com/s/1YdAHzPlLhCSI6rkbgHV1gA?pwd=6666
 >提取码：6666 
 >
->B站视频演示：
+>
+>
+>【识别】B站视频演示：
 >
 >https://www.bilibili.com/video/BV1Ug4y1P7bS/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=1f5d064eea850d16e47b622112a8445b
+>
+>【预测】B站视频演示：
+>
+>[【开源】大小能量机关预测！！超准！！_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1zm4y1x7dC/?p=1&spm_id_from=pageDriver)
 >
 >最后感谢桂电老哥提供的旧能量机关相机内录视频

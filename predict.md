@@ -101,27 +101,43 @@ $$
 ### 公式计算推导
 
 大能量机关的弧度-时间函数：
+
+
 $$
 \begin{align}
 & \theta(t) = A\cdot \cos(B\cdot t +C)+D\cdot t+E
 \end{align}
 $$
-进行间隔为$\Delta t$的差分：
+
+
+进行间隔为 $\Delta t$ 的差分：
+
+
 $$
 \begin{align}
 &\mathrm{Diff}(t, \Delta t) = \theta(t)-\theta(t-\Delta t) = A\cdot\{\cos(B\cdot t +C) - \cos[B\cdot (t -\Delta t) +C)]\}+ D\cdot \Delta t\\
 \end{align}
 $$
+
+
 利用和差化积公式可得：
+
+
 $$
 \mathrm{Diff}(t, \Delta t) = A\cdot \sin(B\cdot t-\frac{\Delta t}{2}+C)\cdot\sin\frac{\Delta t}{2}+D\cdot \Delta t
 $$
-其中$\Delta t$为超参恒定值，令$A'=A\cdot \sin \frac{\Delta t}{2}$，$C'=C-\frac{\Delta t}{2}$，$D' = D\cdot\Delta t$可以简写为
+
+
+其中 $\Delta t$ 为超参恒定值，令 $A'=A\cdot \sin \frac{\Delta t}{2}$ ， $C'=C-\frac{\Delta t}{2}$ ， $D' = D\cdot\Delta t$ 可以简写为
+
+
 $$
 \Delta \theta(t)=\mathrm{Diff}(t) = A'\sin(B\cdot t + C')+D'
 $$
 
-我们把$\Delta t $认为是子弹飞行时间，那么$\Delta \theta(t)$我们要打的弧度提前量，对大符的预测就可以转化为，对$\mathrm{Diff}(t)$这个函数的拟合。
+
+
+我们把 $\Delta t $ 认为是子弹飞行时间，那么 $\Delta \theta(t)$ 我们要打的弧度提前量，对大符的预测就可以转化为，对 $\mathrm{Diff}(t)$ 这个函数的拟合。
 
 <img src="doc/image_3.png" alt="image_3" style="zoom:50%;" />
 
@@ -240,10 +256,15 @@ with open(r"data/6_big_red_dark.txt", 'r') as f:
 
 
 小能量机关的弧度-时间函数：
+
+
 $$
 \theta(t) = a\cdot t +b
 $$
-进行间隔为$\Delta t$的差分：
+
+
+进行间隔为 $\Delta t$ 的差分：
+
 
 $$
 \begin{align}
@@ -251,23 +272,33 @@ $$
 \end{align}
 $$
 
-$a\cdot\Delta t$这是一个常数，求平均就是对常数的最小二乘，所以我们只需对差分结果求平均即可
+
+
+$a\cdot\Delta t$ 这是一个常数，求平均就是对常数的最小二乘，所以我们只需对差分结果求平均即可
 
 同时我们可以发现：
+
+
 $$
 \Delta\theta(t, n\cdot\Delta t)=\Delta\theta(t, \Delta t)\cdot n=a\cdot \Delta t\cdot n
 $$
+
+
 在大能量机关的预测我们可知：
+
+
 
 <div align = "center">前置需要时间 = 拟合位置出现时间+预测时间△t</div>
 
 
 
-设，一个轮次的间隔时间为：$\Delta t_1$，n个轮次的间隔时间为$\Delta t_n$
+设，一个轮次的间隔时间为： $\Delta t_1$ ，n个轮次的间隔时间为 $\Delta t_n$ 
 
 我们需要预测的往往不是一个轮次之后的时间，如帧率为50的相机，我们需要预测0.2s之后，则需要预测从现在往后第10个轮次
 
-假设我们需要预测$\Delta t_n$之后的值，即现在往后的n个轮次之后，可得：
+假设我们需要预测 $\Delta t_n$ 之后的值，即现在往后的n个轮次之后，可得：
+
+
 $$
 \begin{align}
 &\begin{cases}
@@ -278,10 +309,20 @@ $$
 &\color{red}\Delta\theta(t, \Delta t_n) =\Delta\theta(t, \Delta t_1)\cdot n
 \end{align}
 $$
+
+
 那么小能量机关的前置时间为：
+
+
 $$
 前\ 置\ 需\ 要\ 时\ 间 = 拟\ 合\ 位\ 置\ 出\ 现\ 时\ 间+预\ 测\ 时\ 间△t_1
 $$
+
+
+
+
+
+
 
 <center class="half">
     <img src="doc/image_10.png" width="400"/>
@@ -291,9 +332,9 @@ $$
 
 图为以0.2s为预测量和0.6s为预测量的，预测误差，预测误差在[-9°, +9°]以内
 
-且橘线和蓝线完全重合，故$\Delta\theta(t, \Delta t_n) =\Delta\theta(t, \Delta t_1)\cdot n$是完全成立的，
+且橘线和蓝线完全重合，故 $\Delta\theta(t, \Delta t_n) =\Delta\theta(t, \Delta t_1)\cdot n$ 是完全成立的，
 
-**所以只需进行一个轮次的差分，预测时间换算为预测轮次n，$\pmb{n\cdot t_1}$即可**
+**所以只需进行一个轮次的差分，预测时间换算为预测轮次n， $\pmb{n\cdot t_1}$ 即可**
 
 
 

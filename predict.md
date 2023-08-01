@@ -55,13 +55,9 @@ $$
 这样问题就被转化为**单变量的预测问题**，或**关于弧度的时间序列预测问题**，或**弧度-时间的拟合问题**
 
 标准为：
-
-
 $$
 |\mathrm{Radian}_{\mathrm{t+\Delta t}}-\mathrm{Radian}_{\mathrm{predict}}| <\mathrm{threshold}
 $$
-
-
 由图估算装甲板弧长  $L = 300$  ，等比例换算扇叶半径为 $\mathrm{R}=636.42$  
 
 

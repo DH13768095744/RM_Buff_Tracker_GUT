@@ -1,13 +1,19 @@
 # 能量机关预测的评价标准
 
 预测是为了使得弹丸在经过一定的飞行时间之后，能够打在扇叶装甲板上那么评价标准就可以描述为
+
+
 $$
 u_{\mathrm{predict}} = u_{\mathrm{t}}+\Phi(\Delta t)
 $$
+
+
 其中$\Phi(\Delta t)$为预测量，在时间经过$\Delta t$之后,弹丸打在装甲板的扇叶上,应满足
 $$
 |u_{\mathrm{t+\Delta t}}-u_{\mathrm{predict}}| < \mathrm{threshold}
 $$
+
+
 其中，$\mathrm{threashold}$为**扇叶装甲板的大小**计算出的度量指标
 
 

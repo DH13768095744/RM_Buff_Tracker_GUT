@@ -230,8 +230,6 @@ with open(r"data/6_big_red_dark.txt", 'r') as f:
 
 1. 进行【拟合位置的选择】前，应选择好数据平滑算法和调好其参数，如果出现短时间内多现个峰值，会触发报错
 
-   <img src="doc/image_8.png" alt="image_8" style="zoom:0%;" />
-
    ![image_8](doc/image_8.png)
 
    

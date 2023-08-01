@@ -8,13 +8,17 @@ u_{\mathrm{predict}} = u_{\mathrm{t}}+\Phi(\Delta t)
 $$
 
 
-其中  $\Phi(\Delta t)$   为预测量，在时间经过$\Delta t$之后,弹丸打在装甲板的扇叶上,应满足
+其中  $\Phi(\Delta t)$   为预测量，在时间经过 $\Delta t$  之后,弹丸打在装甲板的扇叶上,应满足
+
+
 $$
 |u_{\mathrm{t+\Delta t}}-u_{\mathrm{predict}}| < \mathrm{threshold}
 $$
 
 
-其中，$\mathrm{threashold}$为**扇叶装甲板的大小**计算出的度量指标
+
+
+其中， $\mathrm{threashold}$  为**扇叶装甲板的大小**计算出的度量指标
 
 
 
@@ -25,6 +29,8 @@ $$
 > 能量机关扇叶到中心R在像素坐标下的距离能保持恒定（在可接受范围内波动）
 
 那么我们可以对这个问题先进行建模：我们以**中心R**为坐标原点，建立平面直角坐标系：
+
+
 $$
 X_{Fanblade}^{R} = X_{R}^{pixel}-X^{pixel}_{Fanblade}
 $$
@@ -35,6 +41,8 @@ $X_{Fanblade}^{R}、X_{R}^{pixel}、X^{pixel}_{Fanblade}$分别指的是：扇�
 
 
 根据**前提假设，半径不变**，为了简化计算我们转化到极坐标系：
+
+
 $$
 \begin{cases}
 x, \  y = X_{Fanblade}^{R} [0], \ X_{Fanblade}^{R}[1]\\
@@ -42,16 +50,26 @@ x, \  y = X_{Fanblade}^{R} [0], \ X_{Fanblade}^{R}[1]\\
 R = |X_{Fanblade}^{R}|
 \end{cases}
 $$
+
+
 这样问题就被转化为**单变量的预测问题**，或**关于弧度的时间序列预测问题**，或**弧度-时间的拟合问题**
 
 标准为：
+
+
 $$
 |\mathrm{Radian}_{\mathrm{t+\Delta t}}-\mathrm{Radian}_{\mathrm{predict}}| <\mathrm{threshold}
 $$
-由图估算装甲板弧长$L = 300$，等比例换算扇叶半径为$\mathrm{R}=636.42$
+
+
+由图估算装甲板弧长  $L = 300$  ，等比例换算扇叶半径为 $\mathrm{R}=636.42$  
+
+
 $$
 \mathrm{threshold}=0.5 \cdot L / R=0.2356
 $$
+
+
 大概为**13.504度**
 
 

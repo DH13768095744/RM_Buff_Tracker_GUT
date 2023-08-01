@@ -58,7 +58,9 @@ $$
 
 
 $$
-\mathrm{Radian}_{\mathrm{t+\Delta t}}-\mathrm{Radian}_{\mathrm{predict}}  < \mathrm{threshold}
+\begin{align}
+&\mathrm{Radian}_{\mathrm{t+\Delta t}}-\mathrm{Radian}_{\mathrm{predict}}  < \mathrm{threshold}\\
+\end{align}
 $$
 
 
@@ -227,10 +229,6 @@ with open(r"data/6_big_red_dark.txt", 'r') as f:
 #### 4.代码使用提醒
 
 1. 进行【拟合位置的选择】前，应选择好数据平滑算法和调好其参数，如果出现短时间内多现个峰值，会触发报错
-
-   <center class="half">
-       <img src="doc/image_8.png" width="1100"/>
-   </center>
 
    
 

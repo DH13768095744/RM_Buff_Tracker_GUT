@@ -59,7 +59,7 @@ $$
 
 $$
 \begin{align}
-&\mathrm{Radian}_{\mathrm{t+\Delta t}}-\mathrm{Radian}_{\mathrm{predict}}  < \mathrm{threshold}\\
+&\theta_{\mathrm{t+\Delta t}}-\theta_{\mathrm{predict}}  < \mathrm{threshold}\\
 \end{align}
 $$
 

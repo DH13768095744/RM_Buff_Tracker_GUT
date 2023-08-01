@@ -79,9 +79,8 @@ $$
 
 
 <img src="doc/image_2.png" alt="image_2" style="zoom:50%;" />
-$$
 
-$$
+
 
 ## 大能量机关(一阶差分法+拟合)：
 
@@ -229,20 +228,26 @@ with open(r"data/6_big_red_dark.txt", 'r') as f:
 
 1. 进行【拟合位置的选择】前，应选择好数据平滑算法和调好其参数，如果出现短时间内多现个峰值，会触发报错
 
+   
+
    ![image_8](doc/image_8.png)
 
-2. 这个方法的前置需要时间 = 拟合位置出现时间+预测时间$\Delta t$，大概在3s多
+   
+
+2. 这个方法的前置需要时间 = 拟合位置出现时间+预测时间 $\Delta t$，大概在3s多
 
    所以会**【在开启打符后，大概3s才能开始预测打符，这是这个方法的一个缺点**】
 
 3. 超参：
 
-   在predict_exeample_main.py中
+   在predict_example_main.py中
 
    设置红蓝颜色决定顺时针逆时针，大符小符两种预测模式、设置相机频率，预测未来的时间差
 
-   ![image_9](doc/image_9.png)
    
+
+   ![image_9](doc/image_9.png)
+
    
 
 

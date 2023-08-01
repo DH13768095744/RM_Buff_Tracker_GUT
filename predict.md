@@ -8,7 +8,7 @@ u_{\mathrm{predict}} = u_{\mathrm{t}}+\Phi(\Delta t)
 $$
 
 
-其中$\Phi(\Delta t)$为预测量，在时间经过$\Delta t$之后,弹丸打在装甲板的扇叶上,应满足
+其中  $\Phi(\Delta t)$   为预测量，在时间经过$\Delta t$之后,弹丸打在装甲板的扇叶上,应满足
 $$
 |u_{\mathrm{t+\Delta t}}-u_{\mathrm{predict}}| < \mathrm{threshold}
 $$

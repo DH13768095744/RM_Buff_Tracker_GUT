@@ -8,15 +8,36 @@
 >
 > QQ：2438254242
 
+# 新增预测功能（2023/8/1）
+
+[具体思路在predict.md内](predict.md)
+
+运行是通过predict_example_main.py
+
+预测相关的视频路径为：
+
+```python
+LIST = [
+    r"./examples/example_for_prediction/6_dark_blue_big/parameter.yaml",
+    r"./examples/example_for_prediction/7_dark_red_big/parameter.yaml",
+    r"./examples/example_for_prediction/8_dark_blue_small/parameter.yaml",
+    r"./examples/example_for_prediction/9_dark_red_small/parameter.yaml",
+    r"./examples/example_for_prediction/10_dark_red_small_near/parameter.yaml"
+]
+```
+
+
+
 # 项目依赖
 
 1. Opencv-Python
 2. Numpy
 3. matplotlib
+4. Scipy
 
 
 
-## 主要思路
+## 识别分类扇叶主要思路
 
 ### 0.前提
 

@@ -178,8 +178,6 @@ with open(r"data/6_big_red_dark.txt", 'r') as f:
 
 所以需要先对其进行数据平滑
 
-<img src="doc/image_7.png" alt="image_7" style="zoom:0%;" />
-
 在这里用的是滑动平均的方式进行滤波，SG滤波和指数滑动平均也可
 
 （
@@ -202,7 +200,7 @@ with open(r"data/6_big_red_dark.txt", 'r') as f:
 
 我们跨固定间隔，求离散数据的增长趋势，**如果增长趋势出现两次变化，则认为出现了两个极值**
 
-​	
+​	<img src="doc/image_7.png" alt="image_7" style="zoom:0%;" />
 
 上图是：原始数据和平滑数据
 
@@ -236,7 +234,7 @@ with open(r"data/6_big_red_dark.txt", 'r') as f:
 
 2. 这个方法的前置需要时间 = 拟合位置出现时间+预测时间 $\Delta t$，大概在3s多
 
-   所以会**【在开启打符后，大概3s才能开始预测打符，这是这个方法的一个缺点**】
+   所以会**【在开启打符后，大概3s才能开始预测打符，这是这个方法的一个缺点】**
 
 3. 超参：
 

@@ -14,7 +14,7 @@
 
 运行是通过predict_example_main.py
 
-预测相关的视频路径为：
+预测相关的视频路径为： 
 
 ```python
 LIST = [

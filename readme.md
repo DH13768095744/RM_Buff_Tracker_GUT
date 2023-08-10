@@ -94,6 +94,12 @@ LIST = [
 
 
 
+<span style="color:red">你要改色的文字</span>
+
+<span style="color:orange">你要改色的文字</span>
+
+<span style="color:gray">你要改色的文字</span>
+
 
 
 ### 3. 扇叶分类
@@ -102,14 +108,14 @@ LIST = [
 
 扇叶只有三个状态：
 
-1. 未亮起
-2. 已亮起 | 待击打目标
-3. 已亮起 | 已击打
+1. <span style="color:gray">未亮起</span>
+2. <span style="color:red">已亮起 | 待击打目标</span>
+3. <span style="color:orange">已亮起 | 已击打</span>
 
 扇叶亮起有以下原则：
 
-1. 当只有一个扇叶亮起时，此扇叶一定是==已亮起 | 待击打目标==，其他一定是<u>未亮起</u>
-2. 当有新的扇叶亮起时（当前帧亮起扇叶个数>上一帧），新扇叶一定是==已亮起 | 待击打目标==, 其他已亮起的肯定是==已亮起 | 已击打==
+1. 当只有一个扇叶亮起时，此扇叶一定是<span style="color:red">已亮起 | 待击打目标</span>，其他一定是<span style="color:gray">未亮起</span>
+2. 当有新的扇叶亮起时（当前帧亮起扇叶个数>上一帧），新扇叶一定是<span style="color:red">已亮起 | 待击打目标</span>, 其他**已亮起**的肯定是<span style="color:orange">已亮起 | 已击打</span>，其他为<span style="color:gray">未亮起</span>
 
 ```python
 if len(realFanBladeList) == 1:  # 如果只有一个扇叶亮起，则这一定是待击打目标，其他必然为未亮起
@@ -117,14 +123,14 @@ if len(realFanBladeList) == 1:  # 如果只有一个扇叶亮起，则这一定�
     self.states[0] = "target"
     for i_ in range(1, 5):
         self.states[i_] = "unlighted"
-    elif len(realFanBladeList) > self.fanNum:
-        # 如果现在的亮起个数大于上一帧亮起个数，则之前为未亮起的现在一定是待击打目标
-        # 上一帧是待击打目标的现在一定是已击打目标，其他不变
-        id_x = realFanBladeList[i].bbox.id
-        if self.states[id_x] == "target":
-            self.states[id_x] = "shot"
-        elif self.states[id_x] == "unlighted":
-            self.states[id_x] = "target"
+elif len(realFanBladeList) > self.fanNum:
+    # 如果现在的亮起个数大于上一帧亮起个数，则之前为未亮起的现在一定是待击打目标
+    # 上一帧是待击打目标的现在一定是已击打目标，其他不变
+    id_x = realFanBladeList[i].bbox.id
+    if self.states[id_x] == "target":
+        self.states[id_x] = "shot"
+    elif self.states[id_x] == "unlighted":
+        self.states[id_x] = "target"
 ```
 
 

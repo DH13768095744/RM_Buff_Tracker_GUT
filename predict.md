@@ -138,7 +138,7 @@ $$
 
 
 
-我们把 $ \Delta t $  认为是子弹飞行时间，那么 $\Delta \theta(t)$ 我们要打的弧度提前量，对大符的预测就可以转化为，对 $\mathrm{Diff}(t)$ 这个函数的拟合。
+我们把 $\Delta t$ 认为是子弹飞行时间，那么 $\Delta \theta(t)$ 我们要打的弧度提前量，对大符的预测就可以转化为，对 $\mathrm{Diff}(t)$ 这个函数的拟合。
 
 <img src="doc/image_3.png" alt="image_3" style="zoom:50%;" />
 

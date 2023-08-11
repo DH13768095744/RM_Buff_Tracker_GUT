@@ -37,6 +37,18 @@ LIST = [
 
 
 
+# 帧率
+
+<img src="doc/FPS.png" alt="binary" style="zoom:%;" />
+
+分辨率：768 * 1280
+
+CPU：i5-8300H CPU @ 2.30GHz，2304 MHz
+
+<span style="color:red">平均帧率：86.46 FPS</span>
+
+
+
 ## 识别分类扇叶主要思路
 
 ### 0.前提
@@ -89,16 +101,6 @@ LIST = [
 进一步，我们寻找最小外接矩形和外接矩形，可以得到一些系列的备选框，将备选框的位置利用其和中心R的约束关系更正到当前中心R的位置，用更正后的**上一帧框和当前帧的备选框进行IOU 操作**，即可判断哪些备选框是扇叶
 
 <img src="doc/image-20230624193126875.png" alt="image-20230624193126875" style="zoom:67%;" />
-
-
-
-
-
-<span style="color:red">你要改色的文字</span>
-
-<span style="color:orange">你要改色的文字</span>
-
-<span style="color:gray">你要改色的文字</span>
 
 
 

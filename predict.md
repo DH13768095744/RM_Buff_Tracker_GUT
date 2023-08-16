@@ -140,8 +140,6 @@ $$
 
 我们把 $\Delta t$ 认为是子弹飞行时间，那么 $\Delta \theta(t)$ 我们要打的弧度提前量，对大符的预测就可以转化为，对 $\mathrm{Diff}(t)$ 这个函数的拟合。
 
-<img src="doc/image_3.png" alt="image_3" style="zoom:50%;" />
-
 对大能量机关进行采样，视频是50FPS，我们对未来0.2s进行预测，那么轮次差就是：50 * 0.2 = 10
 
 进行10轮次的一阶差分【在这转为了角度制】
@@ -153,6 +151,8 @@ with open(r"data/6_big_red_dark.txt", 'r') as f:
 ```
 
 用[0, 176]之内的差分数据进行拟合，得到的函数是每个位置的预测值。
+
+<img src="doc/image_3.png" alt="image_3" style="zoom:50%;" />
 
 图上是分别是：原始数据，平滑后的数据，和拟合的结果
 

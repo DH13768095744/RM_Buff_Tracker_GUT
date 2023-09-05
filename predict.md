@@ -21,6 +21,15 @@ $$
 其中， $\mathrm{threashold}$  为**扇叶装甲板的大小**计算出的度量指标
 
 
+$$
+\begin{align}
+&\color{red}{下面的文字建立在这样一个逻辑下:}\\
+&\color{red}{1. 根据经验建立假设}\\
+&\color{red}{2. 根据需求建立标准(排除弹道离散的预测误差不能超过一个装甲板)}\\
+&\color{red}{3. 推导过程、实验。实验结果符合标准\to假设成立，推导结果也可用}\\
+\end{align}
+$$
+
 
 # 思路
 
@@ -228,7 +237,19 @@ with open(r"data/6_big_red_dark.txt", 'r') as f:
 
 1. 进行【拟合位置的选择】前，应选择好数据平滑算法和调好其参数，如果出现短时间内多现个峰值，会触发报错
 
-   ![image_8](doc/image_8.png)
+   ```python
+   if self.isFlip():
+       self.__FlipCount += 1
+       if self.__FlipCount == 2:
+           if self.__count < self.__lim:
+               self.__count += 1  # 20个轮次以检验是不是由于滤波不够导致突发的单调性变化
+           else:
+               return True, self.__idx
+           if self.__FlipCount > 2:
+               raise ValueError(
+                   "不可能在20个轮次内单调性突然变化，你需要修改滤波算法及其参数，或queue_size参数[除非你帧率很低]")
+               return False, -1
+   ```
 
    
 
@@ -242,15 +263,19 @@ with open(r"data/6_big_red_dark.txt", 'r') as f:
 
    设置红蓝颜色决定顺时针逆时针，大符小符两种预测模式、设置相机频率，预测未来的时间差
 
-   
-
-   ![image_9](doc/image_9.png)
-
-   
-
-
-
-
+   ```python
+   """
+   超参数
+   color = red | blue
+   moveMode = mode.big | mode.small
+   freq : 帧率
+   time_interval : 预测间隔
+   """
+   color = 'blue'
+   moveMode = mode.small
+   freq = 50
+   deltaT = 0.2
+   ```
 
 
 

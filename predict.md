@@ -19,13 +19,14 @@ $$
 
 其中， $\mathrm{threashold}$  为**扇叶装甲板的大小**计算出的度量指标
 
-<font color=#00FFFF>下面的文字建立在这样一个逻辑下:</font>
-
-<strong style="color:red;">1. 根据经验建立假设</strong>
-
-<strong style="color:red;">2. 根据需求建立标准(排除弹道离散的预测误差不能超过一个装甲板 ↑ )</strong>
-
-<strong style="color:red;">3. 推导过程、实验。实验结果符合标准 → 假设成立，推导结果也可用</strong>
+$$
+\begin{align}
+&\color{red}{下面的文字建立在这样一个逻辑下:}\\
+&\color{red}{1. 根据经验建立假设}\\
+&\color{red}{2. 根据需求建立标准(排除弹道离散的预测误差不能超过一个装甲板)}\\
+&\color{red}{3. 推导过程、实验。实验结果符合标准\to假设成立，推导结果也可用}\\
+\end{align}
+$$
 
 # 思路
 

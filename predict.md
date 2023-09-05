@@ -19,9 +19,7 @@ $$
 
 其中， $\mathrm{threashold}$  为**扇叶装甲板的大小**计算出的度量指标
 
-
-
-<strong style="color:red;">下面的文字建立在这样一个逻辑下:</strong>
+<font color=#00FFFF>下面的文字建立在这样一个逻辑下:</font>
 
 <strong style="color:red;">1. 根据经验建立假设</strong>
 

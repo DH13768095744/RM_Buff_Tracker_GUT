@@ -40,9 +40,7 @@ $$
 $$
 X_{Fanblade}^{R} = X_{R}^{pixel}-X^{pixel}_{Fanblade}
 $$
-<img src="doc/image_1.png" alt="image_1" style="zoom:0%;" />
-
-$X_{Fanblade}^{R}、X_{R}^{pixel}、X^{pixel}_{Fanblade}$分别指的是：扇叶在R坐标系下的坐标，中心R和扇叶的像素坐标值
+$X_{Fanblade}^{R}、X_{R}^{pixel}、X^{pixel}_{Fanblade}$分别指的是：扇叶在R坐标系下的坐标，中心R在像素坐标下的值、扇叶像素坐标下的值
 
 
 
@@ -65,13 +63,13 @@ $$
 
 $$
 \begin{align}
-&\theta_{\mathrm{t+\Delta t}}-\theta_{\mathrm{predict}}  < \mathrm{threshold}\\
+&|\theta_{\mathrm{t+\Delta t}}-\theta_{\mathrm{predict}}|  < \mathrm{threshold}\\
 \end{align}
 $$
 
+$\theta_{\mathrm{t+\Delta t}}$是现在$\Delta t$时间后扇叶的弧度值，即真实值，$\theta_{\mathrm{predict}}$是现在预测$\Delta t$时间后扇叶的弧度值
 
 由图估算装甲板弧长  $L = 300$  ，等比例换算扇叶半径为 $\mathrm{R}=636.42$  
-
 
 $$
 \mathrm{threshold}=0.5 \cdot L / R=0.2356
@@ -82,11 +80,7 @@ $$
 
 
 
-
-
-
-
-<img src="doc/image_2.png" alt="image_2" style="zoom:50%;" />
+<img src="doc/image_2_2.png" alt="image_2" style="zoom:50%;" />
 
 
 

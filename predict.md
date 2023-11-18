@@ -38,8 +38,10 @@ $$
 
 
 $$
-X_{Fanblade}^{R} = X_{R}^{pixel}-X^{pixel}_{Fanblade}
+X_{Fanblade}^{R} = X_{Fanblade}^{pixel}-X^{pixel}_{R}
 $$
+
+
 $X_{Fanblade}^{R}、X_{R}^{pixel}、X^{pixel}_{Fanblade}$分别指的是：扇叶在R坐标系下的坐标，中心R在像素坐标下的值、扇叶像素坐标下的值
 
 
@@ -80,7 +82,7 @@ $$
 
 
 
-<img src="doc/image_2_2.png" alt="image_2" style="zoom:50%;" />
+<img src="doc/image_2_2.png" alt="image_2" style="zoom:;" />
 
 
 

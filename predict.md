@@ -69,7 +69,8 @@ $$
 \end{align}
 $$
 
-$\theta_{\mathrm{t+\Delta t}}$是现在 $ \Delta t $ 时间后扇叶的弧度值，即真实值，$\theta_{\mathrm{predict}}$是现在预测$\Delta t$时间后扇叶的弧度值
+$\theta_{\mathrm{t+\Delta t}}$是现在 $\Delta t$ 时间后扇叶的弧度值，即真实值
+$\theta_{\mathrm{predict}}$ 是现在预测 $\Delta t$ 时间后扇叶的弧度值
 
 由图估算装甲板弧长  $L = 300$  ，等比例换算扇叶半径为 $\mathrm{R}=636.42$  
 
